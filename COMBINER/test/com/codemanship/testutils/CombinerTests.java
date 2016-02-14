@@ -32,7 +32,7 @@ public class CombinerTests {
 	}
 	
 	@Test
-	public void bigTomaleTest() throws Exception {
+	public void threeArraysOfTwoElementsReturnEightCombinations() throws Exception {
 		assertArrayEquals(new Object[][]{
 				{1,"A",true}, 
 				{1,"A",false},
@@ -46,7 +46,7 @@ public class CombinerTests {
 	}
 	
 	@Test
-	public void anotherBigTest() throws Exception {
+	public void fourArraysOfOneTwoThreeAndOneElementsReturnSixCombinations() throws Exception {
 		Object a = new Integer(1);
 		Object b = new Combiner();
 		
