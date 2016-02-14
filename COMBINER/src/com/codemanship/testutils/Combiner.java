@@ -4,13 +4,13 @@ public class Combiner {
 
 	private Object[][] combined;
 
-	public Object[][] combineArrays(Object[][] arrays) {
+	private Object[][] combineArrays(Object[][] arrays) {
 		buildEmptyCombinedArray(arrays);		
 		populateCombinedArray(arrays);			
 		return combined;
 	}
 
-	public void populateCombinedArray(Object[][] arrays) {
+	private void populateCombinedArray(Object[][] arrays) {
 		for (int i = 0; i < arrays.length; i++) {
 			populateColumn(arrays, i);
 		}
@@ -42,7 +42,7 @@ public class Combiner {
 		return repetitions;
 	}
 
-	public void buildEmptyCombinedArray(Object[][] arrays) {
+	private void buildEmptyCombinedArray(Object[][] arrays) {
 		int numberOfArrays = arrays.length;
 		int numberOfCombinations = 1;
 		for (Object[] array : arrays) {
