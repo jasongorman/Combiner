@@ -1,58 +1,50 @@
 package com.codemanship.testutils;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class Combiner {
 
 	private Object[][] combined;
 
 	private Object[][] combineArrays(Object[][] arrays) {
-		buildEmptyCombinedArray(arrays);		
-		populateCombinedArray(arrays);			
+		List<List<Object>> combinations = new ArrayList<List<Object>>();
+		for (Object[] parameterValues : arrays) {
+			combinations = combine(combinations, parameterValues);
+		}
+		combined = new Object[combinations.size()][];
+		for (int combinationIndex = 0; combinationIndex < combinations.size(); combinationIndex++) {
+			combined[combinationIndex] = combinations.get(combinationIndex).toArray();
+		}
 		return combined;
 	}
 
-	private void populateCombinedArray(Object[][] arrays) {
-		for (int i = 0; i < arrays.length; i++) {
-			populateColumn(arrays, i);
-		}
-	}
-
-	private void populateColumn(Object[][] arrays, int columnIndex) {
-		int repetitions = calculateRepetitions(arrays, columnIndex);
-		insertColumnValues(columnIndex, repetitions, arrays[columnIndex]);
-	}
-
-	private void insertColumnValues(int columnIndex, int repetitions,
-			Object[] columnSource) {
-		for(int i = 0; i < combined.length; i += (repetitions * columnSource.length)){
-			for(int j = 0;j < columnSource.length;j++){ 
-				for(int k = 0;k < repetitions;k++){
-					combined[i + (j * repetitions) + k][columnIndex] = columnSource[j];
-				}
+	private List<List<Object>> combine(List<List<Object>> existingCombinations, Object[] parameterValues) {
+		List<List<Object>> newCombinations = new ArrayList<List<Object>>();
+		initialiseCombinations(existingCombinations, parameterValues, newCombinations);
+		for (List<Object> existingCombination : existingCombinations) {
+			for (Object parameterValue : parameterValues) {
+				List<Object> newCombination = new ArrayList<>();
+				newCombination.addAll(existingCombination);
+				newCombination.add(parameterValue);
+				newCombinations.add(newCombination);
 			}
 		}
+		return newCombinations;
 	}
 
-	private int calculateRepetitions(Object[][] arrays, int columnIndex) {
-		int repetitions = 1;
-		for (int i = 0; i < arrays.length; i++) {
-			if(i > columnIndex){
-				repetitions *= arrays[i].length;
+	private void initialiseCombinations(List<List<Object>> existingCombinations, Object[] parameterValues, List<List<Object>> newCombinations) {
+		if (existingCombinations.isEmpty()) {
+			for (Object parameterValue : parameterValues) {
+				newCombinations.add(Arrays.asList(parameterValue));
 			}
 		}
-		return repetitions;
-	}
-
-	private void buildEmptyCombinedArray(Object[][] arrays) {
-		int numberOfArrays = arrays.length;
-		int numberOfCombinations = 1;
-		for (Object[] array : arrays) {
-			numberOfCombinations *= array.length;
-		}
-		combined = new Object[numberOfCombinations][numberOfArrays];
 	}
 
 	public static Object[][] combine(Object[][] arrays) {
 		return new Combiner().combineArrays(arrays);
 	}
+
 
 }

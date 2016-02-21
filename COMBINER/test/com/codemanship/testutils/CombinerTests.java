@@ -59,4 +59,34 @@ public class CombinerTests {
 				{a,null,3,"A"}},		
 				combine(new Object[][]{{a},{b,null},{1,2,3},{"A"}}));
 	}
+	
+	@Test(timeout=200)
+	public void generatesOneMillionCombinationsInUnderTwoHundredMilliseconds() throws Exception {
+		combine(new Object[][]{
+				new Object[100],
+				new Object[100],
+				new Object[100]
+		});
+	}
+	
+	@Test
+	public void generatesOneMillionCombinationsUsingLessThanTenMegabytesOfMemory() throws Exception {
+		long footprintBefore = calculateMemoryFootprint();
+		Object[][] combinations = combine(new Object[][]{
+				new Object[100],
+				new Object[100],
+				new Object[100]
+		});
+		long MEGABYTE = 1024L * 1024L;
+		long footprintAfter = calculateMemoryFootprint();
+		assertTrue(footprintAfter - footprintBefore < 10 * MEGABYTE );
+	}
+
+	private long calculateMemoryFootprint() {
+		Runtime runtime = Runtime.getRuntime();
+	    runtime.gc();
+	    return runtime.totalMemory() - runtime.freeMemory();
+
+	}
+	
 }
