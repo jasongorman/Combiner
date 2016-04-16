@@ -21,8 +21,8 @@ public class CombinerExampleTests {
 	
 	private Object programmingPairs(){
 		return combine(new Object[][]{
-				{new Programmer("Jane"), new Programmer("Fred"), new Programmer("Ivan")},
-				{new Programmer("Paul"), new Programmer("Raj"), new Programmer("Claudia")}
+				{new Programmer("Jane"), new Programmer("Fred"), new Programmer("Ivan")}, // values for 1st test param
+				{new Programmer("Paul"), new Programmer("Raj"), new Programmer("Claudia")}  // values for 2nd test param
 				
 		});
 	}
@@ -47,8 +47,8 @@ public class CombinerExampleTests {
 	
 	private Object programmingPairs(){
 		return pairwise(new Object[][]{
-				{new Programmer("Jane"), new Programmer("Fred"), new Programmer("Ivan")}, // values for 1st param
-				{new Programmer("Paul"), new Programmer("Raj"), new Programmer("Claudia")} // values for 2nd param
+				{new Programmer("Jane"), new Programmer("Fred"), new Programmer("Ivan")}, 
+				{new Programmer("Paul"), new Programmer("Raj"), new Programmer("Claudia")} 
 				
 		});
 	}
