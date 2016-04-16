@@ -37,7 +37,7 @@ public class CombinerExampleTests {
 }
 ```
 
-If your parameter valaues generate too many combinations, you can generate pairwise combinations instead, which should dramatically reduce the number of test cases while retaining decent assurance:
+If your parameter values generate too many combinations, you can generate pairwise combinations instead, which should dramatically reduce the number of test cases while retaining decent assurance:
 
 ```java
 import static com.codemanship.testutils.Pairwise.pairwise;
@@ -53,3 +53,32 @@ public class CombinerExampleTests {
 		});
 	}
 ```
+
+To generate a range of numeric values for a test parameter, use the Range.range() static method:
+
+```java
+import static com.codemanship.testutils.Pairwise.pairwise;
+
+@RunWith(JUnitParamsRunner.class)
+import static com.codemanship.testutils.Range.range;
+
+@RunWith(JUnitParamsRunner.class)
+public class CombinerExampleTests {
+	
+	private Object locRange(){
+		return range(1,100000, 100);
+	}
+
+	@Test
+	@Parameters(method="locRange")
+	public void sallyAndJimProduceGoodCodeAtAnyScale(long linesOfCode) {
+		Programmer sally = new Programmer("Sally");
+		Programmer jim = new Programmer("Jim");
+		ProgrammingPair pair = new ProgrammingPair(sally , jim);
+		Code code = pair.program(linesOfCode);
+		assertTrue(code.isGood());
+	}
+}
+```
+
+
