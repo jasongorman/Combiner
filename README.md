@@ -47,8 +47,8 @@ public class CombinerExampleTests {
 	
 	private Object programmingPairs(){
 		return pairwise(new Object[][]{
-				{new Programmer("Jane"), new Programmer("Fred"), new Programmer("Ivan")},
-				{new Programmer("Paul"), new Programmer("Raj"), new Programmer("Claudia")}
+				{new Programmer("Jane"), new Programmer("Fred"), new Programmer("Ivan")}, // values for 1st param
+				{new Programmer("Paul"), new Programmer("Raj"), new Programmer("Claudia")} // values for 2nd param
 				
 		});
 	}
@@ -66,7 +66,7 @@ import static com.codemanship.testutils.Range.range;
 public class CombinerExampleTests {
 	
 	private Object locRange(){
-		return range(1,100000, 100);
+		return range(1,100000, 100);  // range(start, end, increment)
 	}
 
 	@Test
