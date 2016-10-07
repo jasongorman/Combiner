@@ -25,7 +25,7 @@ public class Combiner {
 		initialiseCombinations(existingCombinations, parameterValues, newCombinations);
 		for (List<Object> existingCombination : existingCombinations) {
 			for (Object parameterValue : parameterValues) {
-				List<Object> newCombination = new ArrayList<>();
+				List<Object> newCombination = new ArrayList<Object>();
 				newCombination.addAll(existingCombination);
 				newCombination.add(parameterValue);
 				newCombinations.add(newCombination);
