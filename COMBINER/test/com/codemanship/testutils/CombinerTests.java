@@ -9,7 +9,7 @@ import com.codemanship.testutils.Combiner;
 public class CombinerTests {
 
 	@Test
-	public void singleArrayIsReturnedAsSingleCombination() {
+	public void foo() {
 		assertArrayEquals(new Object[][]{{1}}, combine(new Object[][]{{1}}));
 	}
 	
